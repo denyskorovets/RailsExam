@@ -15,20 +15,20 @@
 # gem 'pg'
 #
 default: &default
-  database: beltFinal
+  database: beltPrepFinal1
   adapter: postgresql
   encoding: unicode
-  username: postgres
-  password: postgres
+  username: ubuntu
+  password: 
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: beltFinal
-  username: postgres
-  password: postgres
+  database: beltPrepFinal1
+  username: ubuntu
+  password: 
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -62,7 +62,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: beltFinal
+  database: beltPrepFinal1
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -85,6 +85,6 @@ test:
 #
 production:
   <<: *default
-  database: beltFinal
-  username: postgres
-  password: postgres
+  database: beltPrepFinal1
+  username: ubuntu
+  password:

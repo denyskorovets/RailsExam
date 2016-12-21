@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome to Bright Ideas</title>
+</head>
+<body>
+	<h2> Hi, <%= current_user.alias %>!</h2>
+	<h3> <a href='/sessions/destroy'>Logout</a> </h3>
+
+<form action="/posts/create" method="post">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  <input type="text" name="post[description]" placeholder="Post something witty here...">
+  <input type="submit" value="Idea!">
+</form>
+
+<% @posts.each do |post| %>
+	<p> <a href="users/<%= post.user.id %>"> <%= post.user.alias %></a> says: </p>
+	<p> <%= post.description %> </p>
+  <form action="/likes" method="post">
+    <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+    <input type="hidden" name="post_id" value="<%= post.id %>">
+    <input type='submit' value='Like'>
+  </form>
+  <p><a href="/bright_ideas/<%= post.id %>"> <%= post.likes.count %> people</a> like this.</p>
+  <% if post.author == current_user.id %>
+    <form action="/posts/<%= post.id %>" method="post">
+      <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete">
+    </form>
+  <% end %>
+
+<% end %>
+</body>
+</html>
